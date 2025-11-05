@@ -1,0 +1,16 @@
+# Node
+node_modules/
+dist/
+build/
+
+# PHP composer
+vendor/
+
+# Env
+.env
+.env.local
+.env.production
+
+# OS files
+.DS_Store
+Thumbs.db
