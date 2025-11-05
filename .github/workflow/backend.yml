@@ -1,0 +1,35 @@
+name: Deploy PHP Backend
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - "backend/**"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Zip backend code
+        run: |
+          cd backend
+          zip -r backend.zip . -x "*.git*"
+
+      - name: Upload ZIP via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4
+        with:
+          server: ${{ secrets.FTP_HOST_BE }}
+          username: ${{ secrets.FTP_USER_BE }}
+          password: ${{ secrets.FTP_PASS_BE }}
+          local-dir: backend
+          server-dir: /be.manguonmo.top/
+
+      - name: Create .env file
+        run: |
+          echo "APP_ENV=production" > backend/.env
+          echo "DB_HOST=${{ secrets.DB_HOST }}" >> backend/.env
+          echo "DB_USER=${{ secrets.DB_USER }}" >> backend/.env
+          echo "DB_PASS=${{ secrets.DB_PASS }}" >> backend/.env
+          # upload .env bằng FTP
