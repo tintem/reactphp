@@ -21,8 +21,8 @@ jobs:
       - name: Deploy to hosting via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4
         with:
-          server: ${{ secrets.FTP_HOST }}
-          username: ${{ secrets.FTP_USER }}
-          password: ${{ secrets.FTP_PASS }}
+          server: ${{ secrets.FTP_HOST_FE }}
+          username: ${{ secrets.FTP_USER_FE }}
+          password: ${{ secrets.FTP_PASS_FE }}
           local-dir: frontend/build
           server-dir: /public_html/
