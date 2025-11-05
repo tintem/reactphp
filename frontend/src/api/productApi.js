@@ -7,7 +7,7 @@ export const getAllProducts = async () => {
     const res = await axios.get(API_URL);
     return res.data.data;
   } catch (error) {
-    console.error("Error fetching products:", error);
+    console.error("Error fetching products: ", error);
     return [];
   }
 };
