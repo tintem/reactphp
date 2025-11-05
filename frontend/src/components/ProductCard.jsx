@@ -1,6 +1,7 @@
 export default function ProductCard({ product }) {
   return (
     <div className="card h-100 shadow-sm">
+      <hr />
       <img
         src={product.image}
         className="card-img-top"
