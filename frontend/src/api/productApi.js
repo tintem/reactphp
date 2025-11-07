@@ -5,7 +5,7 @@ import axios from "axios";
 export const getAllProducts = async () => {
   try {
     const res = await axios.get(API_URL);
-    return res.data;
+    return res.data.data;
   } catch (error) {
     console.error("Error fetching products: ", error);
     return [];
