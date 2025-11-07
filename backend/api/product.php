@@ -26,7 +26,7 @@ class Database {
             // $this->conn = new PDO(
             //     "mysql:host=$this->host;dbname=$this->db_name;charset=utf8",
             //     $this->username,
-            //     $this->password
+            //     $this->password 
             // );
             $this->conn = new PDO('mysql:host=localhost;dbname=bansach', 'root', '');
            // $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
