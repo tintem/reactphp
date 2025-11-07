@@ -9,15 +9,26 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v4
 
+      # 1️⃣ Tạo file .env TRƯỚC khi upload
+      - name: Create .env file
+        run: |
+          echo "APP_ENV=production" > backend/.env
+          echo "DB_HOST=${{ secrets.DB_HOST }}" >> backend/.env
+          echo "DB_USER=${{ secrets.DB_USER }}" >> backend/.env
+          echo "DB_PASS=${{ secrets.DB_PASS }}" >> backend/.env
+
+      # 2️⃣ Nén code (nếu cần)
       - name: Zip backend code
         run: |
           cd backend
           zip -r backend.zip . -x "*.git*"
 
-      - name: Upload ZIP via FTP
+      # 3️⃣ Upload qua FTP
+      - name: Upload backend via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_HOST_BE }}
@@ -25,12 +36,5 @@ jobs:
           password: ${{ secrets.FTP_PASS_BE }}
           local-dir: backend/
           server-dir: /
-          #be.manguonmo.top/public_html/
-
-      - name: Create .env file
-        run: |
-          echo "APP_ENV=production" > backend/.env
-          echo "DB_HOST=${{ secrets.DB_HOST }}" >> backend/.env
-          echo "DB_USER=${{ secrets.DB_USER }}" >> backend/.env
-          echo "DB_PASS=${{ secrets.DB_PASS }}" >> backend/.env
-          # upload .env bằng FTP
+          exclude: |
+            **/.git*
