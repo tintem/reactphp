@@ -1,4 +1,7 @@
 <?php
+ini_set('display_errors', 1); // Enable error display
+ini_set('display_startup_errors', 1); // Show startup errors
+error_reporting(E_ALL); // Report all types of errors
 require_once __DIR__ . '/../vendor/autoload.php';
 
 use Dotenv\Dotenv;
