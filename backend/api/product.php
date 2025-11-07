@@ -14,23 +14,24 @@ class Database {
     public $conn;
 
     public function __construct() {
-        $this->host = $_ENV['DB_HOST'];
-        $this->db_name = $_ENV['DB_NAME'];
-        $this->username = $_ENV['DB_USER'];
-        $this->password = $_ENV['DB_PASS'];
+        $this->host = $_ENV['DB_HOST']??'localhost:3306';
+        $this->db_name = $_ENV['DB_NAME']??'bansach';
+        $this->username = $_ENV['DB_USER']??'root';
+        $this->password = $_ENV['DB_PASS']??'';
     }
 
     public function connect() {
         $this->conn = null;
         try {
-            $this->conn = new PDO(
-                "mysql:host=$this->host;dbname=$this->db_name;charset=utf8",
-                $this->username,
-                $this->password
-            );
-            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            // $this->conn = new PDO(
+            //     "mysql:host=$this->host;dbname=$this->db_name;charset=utf8",
+            //     $this->username,
+            //     $this->password
+            // );
+            $this->conn = new PDO('mysql:host=localhost;dbname=bansach', 'root', '');
+           // $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $e) {
-            echo json_encode(["error" => "Database connection failed: " . $e->getMessage()]);
+            echo json_encode(["error" => "Database connection failed..: " . $e->getMessage()]);
             exit;
         }
         return $this->conn;
@@ -42,7 +43,7 @@ header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Allow-Origin: *");
 
 
-$database = new Database();
+$database = new Database(); 
 $db = $database->connect();
 
 try {
