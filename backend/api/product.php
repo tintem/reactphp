@@ -8,7 +8,7 @@ use Dotenv\Dotenv;
 
 $dotenv = Dotenv::createImmutable(__DIR__ . '/../');
 $dotenv->load();
-print_r($_ENV);
+// print_r($_ENV);
 class Database {
     private $host;
     private $db_name;
