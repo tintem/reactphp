@@ -1,4 +1,4 @@
-name: Deploy PHP Backend
+name: Deploy PHP-Backend
 
 on:
   push:
