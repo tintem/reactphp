@@ -24,7 +24,8 @@ jobs:
           username: ${{ secrets.FTP_USER_BE }}
           password: ${{ secrets.FTP_PASS_BE }}
           local-dir: backend/
-          server-dir: /be.manguonmo.top/public_html/
+          server-dir: /
+          #be.manguonmo.top/public_html/
 
       - name: Create .env file
         run: |
