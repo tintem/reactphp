@@ -19,7 +19,7 @@ export default function ProductList() {
 
   return (
     <div className="container mt-4">
-      <h3 className="mb-3 text-center">Danh Mục Sách...</h3>
+      <h3 className="mb-3 text-center">Danh Mục Sách...11.11</h3>
       <div className="row g-3">
         {products.map((p) => (
           <div key={p.id} className="col-md-3">
